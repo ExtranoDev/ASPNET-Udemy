@@ -73,6 +73,12 @@ namespace ControllersExample.Controllers
             }
             return Content("You will be fine", "text/plain");
         }
+
+        [Route("bookstore")]
+        public IActionResult RedirectTest()
+        {
+            return new RedirectToActionResult("Books", "Store", new { });
+        }
         
     }
 }
