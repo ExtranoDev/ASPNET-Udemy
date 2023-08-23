@@ -1,0 +1,65 @@
+using Microsoft.Extensions.Primitives;
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.Run(async (HttpContext context) =>
+{
+    if (context.Request.Method == "GET" && context.Request.Path == "/")
+    {
+        var queryDict = context.Request.Query;
+        var solution = 0.0;
+        bool isMissingValue = false;
+
+        if (!queryDict.ContainsKey("firstNumber"))
+        {
+            context.Response.StatusCode = 400;
+            await context.Response.WriteAsync("Invalid input for 'firstNumber'\n");
+            isMissingValue = true;
+        }
+        if (!queryDict.ContainsKey("secondNumber"))
+        {
+            if (context.Response.StatusCode == 200)
+                context.Response.StatusCode = 400;
+            await context.Response.WriteAsync($"Invalid input for 'secondNumber'\n");
+            isMissingValue = true;
+        }
+        if (!queryDict.ContainsKey("operation"))
+        {
+            if (context.Response.StatusCode == 200)
+                context.Response.StatusCode = 400;
+            await context.Response.WriteAsync($"Invalid input for 'operation'\n");
+            isMissingValue = true;
+        }
+        
+        
+        if (!isMissingValue && queryDict.Count >= 3)
+        {
+            int firstNumber = int.Parse(queryDict["firstNumber"]);
+            int firstSecondNumber = int.Parse(queryDict["secondNumber"]);
+            string operation = queryDict["operation"];
+
+            if (operation == "add")
+                solution = firstNumber + firstSecondNumber;
+            else if (operation == "subtract")
+                solution = firstNumber - firstSecondNumber;
+            else if (operation == "multiply")
+                solution = firstNumber * firstSecondNumber;
+            else if (operation == "divide")
+                solution = firstNumber / firstSecondNumber;
+            else if (operation == "modulus")
+                solution = firstNumber % firstSecondNumber;
+            else
+            {
+                if (context.Response.StatusCode == 200)
+                    context.Response.StatusCode = 400;
+                await context.Response.WriteAsync($"Invalid input for 'operation'");
+                isMissingValue = true;
+            }
+        }
+        
+        if (!isMissingValue)   
+            await context.Response.WriteAsync($"Solution {solution}");
+    }
+});
+
+app.Run();
