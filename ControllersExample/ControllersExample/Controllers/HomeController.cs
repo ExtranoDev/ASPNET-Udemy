@@ -55,5 +55,24 @@ namespace ControllersExample.Controllers
             Console.WriteLine(bytes);
             return File(bytes, "application/pdf");
         }
+
+        [Route("request-test/{mobile:regex(^\\d{{10}}$)?}")]
+        public IActionResult RequestTest()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Request.Query["mobile"])))
+            {
+                //Response.StatusCode = 400;
+                // return NotFound(); takes status code 400
+                //return Unauthorized();
+                // Same as return Unauthorized()
+                return StatusCode(200);
+            } else if (Convert.ToString(Request.Query["mobile"]).Count() < 10)
+            {
+                Response.StatusCode = 500;
+                return BadRequest();
+            }
+            return Content("You will be fine", "text/plain");
+        }
+        
     }
 }
