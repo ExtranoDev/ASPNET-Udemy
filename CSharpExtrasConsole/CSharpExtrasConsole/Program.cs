@@ -102,9 +102,52 @@ namespace CSharpExtrasConsole
             // values
             Console.WriteLine(student.branch.BranchName);
             Console.WriteLine(student.branch.NoOfSemester);
-            Console.WriteLine(student.RollNo);
-            Console.WriteLine(student.StudentName);
-            Console.WriteLine(student.Email);
+            Console.WriteLine("RollNo: " + student.RollNo);
+            Console.WriteLine("Student Name: " + student.StudentName);
+            Console.WriteLine("Email: " + student.Email);
+
+            // One-to-many relationship definition
+            Student2 student1 = new Student2();
+            student1.RollNo = 1;
+            student1.StudentName = "Vincent";
+            student1.Email = "vincent@gmail";
+
+            student1.examinations = new List<Examination>
+            {
+                new Examination()
+                {
+                    ExaminationName = "CSC101",
+                    Month = 5,
+                    Year = 2023,
+                    MaxMarks = 100,
+                    SecuredMarks = 87
+                },
+                new Examination()
+                {
+                    ExaminationName = "CSC201",
+                    Month = 6,
+                    Year = 2023,
+                    MaxMarks = 100,
+                    SecuredMarks = 79
+                },
+                new Examination()
+                {
+                    ExaminationName = "MTH404",
+                    Month = 8,
+                    Year = 2023,
+                    MaxMarks = 100,
+                    SecuredMarks = 90
+                }
+            };
+
+            Console.WriteLine("RollNo: " + student1.RollNo);
+            Console.WriteLine("Student Name: " + student1.StudentName);
+            Console.WriteLine("Email: " + student1.Email);
+
+            foreach (Examination exam in student1.examinations)
+            {
+                Console.WriteLine(exam.ExaminationName + ", " + exam.Year + ", " + exam.Month + ", " + exam.SecuredMarks + "/" + exam.MaxMarks);
+            }
 
             Console.ReadKey();
         }
