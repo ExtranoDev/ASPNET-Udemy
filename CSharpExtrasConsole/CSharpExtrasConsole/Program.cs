@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using College;
 using ECommerce;
 
 namespace CSharpExtrasConsole
@@ -39,7 +40,11 @@ namespace CSharpExtrasConsole
             {
                 Console.WriteLine(employee.Key + ", " + employee.Value);
             }
-            // ========== Dictionary tutorial ===================
+
+            // ========== End Dictionary tutorial ===================
+
+
+            // ========== Collection of Objects tutorial ===============
             List<Product> products = new List<Product>();
 
             //loop to read data from user
@@ -79,8 +84,27 @@ namespace CSharpExtrasConsole
                 Console.WriteLine(item.ProductID + ", " + item.ProductName + ", " + item.Price + ", " + item.DateOfManufacture);
             }
 
-            //========== Object Collection Tutorial ======================
+            //========== End Object Collection Tutorial ======================
 
+            // =============== Object Relations Tutorial =======================
+
+                // student class's object
+            Student student = new Student();
+            student.RollNo = 123;
+            student.StudentName = "Josh";
+            student.Email = "josh@gmail.com";
+
+            // Branch object // one-to-one relation
+            student.branch = new Branch();
+            student.branch.BranchName = "ICT Engineering";
+            student.branch.NoOfSemester = 8;
+
+            // values
+            Console.WriteLine(student.branch.BranchName);
+            Console.WriteLine(student.branch.NoOfSemester);
+            Console.WriteLine(student.RollNo);
+            Console.WriteLine(student.StudentName);
+            Console.WriteLine(student.Email);
 
             Console.ReadKey();
         }
