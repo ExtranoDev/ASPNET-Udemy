@@ -77,8 +77,20 @@ namespace ControllersExample.Controllers
         [Route("bookstore")]
         public IActionResult RedirectTest()
         {
-            return new RedirectToActionResult("Books", "Store", new { });
+            // return new RedirectToActionResult("Books", "Store", new { }); // 302 - Found temporary redirection
+            //return new RedirectToActionResult("Books", "Store", new { }, permanent: true);// 301 moved permanently
+            // return RedirectToActionPermanent("Books", "Store", new { id = bookID });
+
+            int bookID = Convert.ToInt32(Request.Query["bookID"]);
+
+            // return RedirectToAction("Books", "Store", new { id = bookID });
+            // return new LocalRedirectResult($"store/books/{bookId}"); // local redirects only
+            // return new LocalRedirectResult($"store/books/{bookId}", true); // local redirects only for permanent redirection
+            // return LocalRedirect($"store/books/{bookId}");
+            // return LocalRedirectPermanent($"store/books/{bookID}"); // 301 permanent redirection
+
+            // return Redirect($"store/books/{bookID}");
+            return RedirectPermanent($"store/books/{bookID}"); // 301 - Moved Permanently
         }
-        
     }
 }
