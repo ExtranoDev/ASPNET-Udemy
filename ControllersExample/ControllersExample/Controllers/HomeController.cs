@@ -74,23 +74,16 @@ namespace ControllersExample.Controllers
             return Content("You will be fine", "text/plain");
         }
 
-        [Route("bookstore")]
-        public IActionResult RedirectTest()
+        [Route("bookstore/{bookID:int}/{isloggedin?}")]
+        public IActionResult RedirectTest([FromRoute]int? bookID, [FromQuery]bool isloggedIn, Book book)
         {
             // return new RedirectToActionResult("Books", "Store", new { }); // 302 - Found temporary redirection
             //return new RedirectToActionResult("Books", "Store", new { }, permanent: true);// 301 moved permanently
             // return RedirectToActionPermanent("Books", "Store", new { id = bookID });
+            if (bookID.HasValue == false)
+                return BadRequest("Book id cannot be null or empty");
 
-            int bookID = Convert.ToInt32(Request.Query["bookID"]);
-
-            // return RedirectToAction("Books", "Store", new { id = bookID });
-            // return new LocalRedirectResult($"store/books/{bookId}"); // local redirects only
-            // return new LocalRedirectResult($"store/books/{bookId}", true); // local redirects only for permanent redirection
-            // return LocalRedirect($"store/books/{bookId}");
-            // return LocalRedirectPermanent($"store/books/{bookID}"); // 301 permanent redirection
-
-            // return Redirect($"store/books/{bookID}");
-            return RedirectPermanent($"store/books/{bookID}"); // 301 - Moved Permanently
+            return Content($"Book ID: {book.BookId}\nAuthor: {book.Author}\nLogged In: {isloggedIn}\n");
         }
     }
 }
