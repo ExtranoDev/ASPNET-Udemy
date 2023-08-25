@@ -29,6 +29,7 @@ namespace LINQExample
             //IEnumerable<Employee> orderedEmployee =  employees.OrderByDescending(emp => emp.EmpName);
             IEnumerable<Employee> orderedEmployee =  employees.OrderBy(emp => emp.Job)
                 .ThenBy(emp => emp.EmpName);
+            Employee justOne = orderedEmployee.FirstOrDefault(x => x.Job == "Developer");
             IEnumerable<Employee> result = employees.Where(x => x.Job == "Developer");
 
             foreach (Employee employee in result)
@@ -39,6 +40,16 @@ namespace LINQExample
                 Console.WriteLine("Lives : " + employee.City);
                 Console.WriteLine("Salary : " + employee.Salary);
             }
+            Console.WriteLine("\n========================\n");
+            if (justOne != null)
+            {
+                Console.WriteLine("\nEmployee ID: " + justOne.EmpId);
+                Console.WriteLine("Employee Name: " + justOne.EmpName);
+                Console.WriteLine("Job Title: " + justOne.Job);
+                Console.WriteLine("Lives : " + justOne.City);
+                Console.WriteLine("Salary : " + justOne.Salary);
+            }
+                        
             Console.WriteLine("\n========================\n");
             foreach (Employee employee in orderedEmployee)
             {
