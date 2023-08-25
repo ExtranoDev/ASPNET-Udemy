@@ -75,7 +75,7 @@ namespace ControllersExample.Controllers
         }
 
         [Route("bookstore/{bookID:int}/{isloggedin?}")]
-        public IActionResult RedirectTest([FromRoute]int? bookID, [FromQuery]bool isloggedIn, Book book)
+        public IActionResult RedirectTest(int? bookID, bool isloggedIn, Book book)
         {
             // return new RedirectToActionResult("Books", "Store", new { }); // 302 - Found temporary redirection
             //return new RedirectToActionResult("Books", "Store", new { }, permanent: true);// 301 moved permanently
@@ -83,7 +83,7 @@ namespace ControllersExample.Controllers
             if (bookID.HasValue == false)
                 return BadRequest("Book id cannot be null or empty");
 
-            return Content($"Book ID: {book.BookId}\nAuthor: {book.Author}\nLogged In: {isloggedIn}\n");
+            return Content($"Book ID: {book.BookId}\nAuthor: {book.Author}\nLogged In: {isloggedIn}\n{book}");
         }
     }
 }
