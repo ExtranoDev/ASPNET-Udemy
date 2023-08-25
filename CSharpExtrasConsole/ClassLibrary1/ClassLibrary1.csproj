@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Branch.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Department.cs" />
+    <Compile Include="Employee.cs" />
     <Compile Include="Examination.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

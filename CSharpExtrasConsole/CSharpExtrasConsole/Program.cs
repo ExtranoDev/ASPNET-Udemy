@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using College;
+using Company;
 using ECommerce;
 
 namespace CSharpExtrasConsole
@@ -148,6 +149,59 @@ namespace CSharpExtrasConsole
             {
                 Console.WriteLine(exam.ExaminationName + ", " + exam.Year + ", " + exam.Month + ", " + exam.SecuredMarks + "/" + exam.MaxMarks);
             }
+
+
+            //Three employees in same department
+            Employee employee1 = new Employee() { 
+                EmployeeID = 1,
+                EmployeeName = "Josh",
+                Email = "josh@gmail"
+            };
+            Employee employee2 = new Employee()
+            {
+                EmployeeID = 2,
+                EmployeeName = "Vincent",
+                Email = "vincent@gmail"
+            };
+            Employee employee3 = new Employee()
+            {
+                EmployeeID = 3,
+                EmployeeName = "David",
+                Email = "david@gmail"
+            };
+
+            // create object of department class
+            Department department1 = new Department()
+            {
+                DepartmentID = 1,
+                DepartmentName = "ICT"
+            };
+
+            employee1.dept = department1;
+            employee2.dept = department1;
+            employee3.dept = department1;
+
+            // print employee details
+            Console.WriteLine("\n\nFirst Employee");
+            Console.WriteLine("Employee ID: " + employee1.EmployeeID);
+            Console.WriteLine("Employee Name: " + employee1.EmployeeName);
+            Console.WriteLine("Email: " + employee1.Email);
+            Console.WriteLine("Department ID: " + employee1.dept.DepartmentID);
+            Console.WriteLine("Department Name: " + employee1.dept.DepartmentName);
+
+            Console.WriteLine("\nSecond Employee");
+            Console.WriteLine("Employee ID: " + employee2.EmployeeID);
+            Console.WriteLine("Employee Name: " + employee2.EmployeeName);
+            Console.WriteLine("Email: " + employee2.Email);
+            Console.WriteLine("Department ID: " + employee2.dept.DepartmentID);
+            Console.WriteLine("Department Name: " + employee2.dept.DepartmentName);
+
+            Console.WriteLine("\nThird Employee");
+            Console.WriteLine("Employee ID: " + employee3.EmployeeID);
+            Console.WriteLine("Employee Name: " + employee3.EmployeeName);
+            Console.WriteLine("Email: " + employee3.Email);
+            Console.WriteLine("Department ID: " + employee3.dept.DepartmentID);
+            Console.WriteLine("Department Name: " + employee3.dept.DepartmentName);
 
             Console.ReadKey();
         }
