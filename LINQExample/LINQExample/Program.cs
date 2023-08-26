@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace LINQExample
 {
@@ -29,8 +30,10 @@ namespace LINQExample
             //IEnumerable<Employee> orderedEmployee =  employees.OrderByDescending(emp => emp.EmpName);
             IEnumerable<Employee> orderedEmployee =  employees.OrderBy(emp => emp.Job)
                 .ThenBy(emp => emp.EmpName);
-            Employee justOne = orderedEmployee.FirstOrDefault(x => x.Job == "Developer");
+            Employee justOne = orderedEmployee.FirstOrDefault(x => x.Job == "Developer"); // Or use Last||LastOrDefault||First
             IEnumerable<Employee> result = employees.Where(x => x.Job == "Developer");
+
+            Employee elementAtResult = employees.Where(emp => emp.Job == "Developer").ElementAtOrDefault(0); // Or Use ElementAt()
 
             foreach (Employee employee in result)
             {
