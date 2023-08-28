@@ -34,6 +34,8 @@ namespace LINQExample
             IEnumerable<Employee> result = employees.Where(x => x.Job == "Developer");
 
             Employee elementAtResult = employees.Where(emp => emp.Job == "Developer").ElementAtOrDefault(0); // Or Use ElementAt()
+            Employee singleResult = employees.Where(emp => emp.Job == "Developer").Single(emp => emp.City == "Ife"); // Or Use SingleOrDefault()
+            IEnumerable<int> intResult = employees.Select(emp => emp.EmpId);
 
             foreach (Employee employee in result)
             {
@@ -43,6 +45,12 @@ namespace LINQExample
                 Console.WriteLine("Lives : " + employee.City);
                 Console.WriteLine("Salary : " + employee.Salary);
             }
+
+            foreach (int emp in intResult)
+            {
+                Console.WriteLine("\nEmployee ID: " + emp);
+            }
+
             Console.WriteLine("\n========================\n");
             if (justOne != null)
             {
@@ -52,7 +60,17 @@ namespace LINQExample
                 Console.WriteLine("Lives : " + justOne.City);
                 Console.WriteLine("Salary : " + justOne.Salary);
             }
-                        
+
+            Console.WriteLine("\n========================\n");
+            if (elementAtResult != null)
+            {
+                Console.WriteLine("\nEmployee ID: " + elementAtResult.EmpId);
+                Console.WriteLine("Employee Name: " + elementAtResult.EmpName);
+                Console.WriteLine("Job Title: " + elementAtResult.Job);
+                Console.WriteLine("Lives : " + elementAtResult.City);
+                Console.WriteLine("Salary : " + elementAtResult.Salary);
+            }
+
             Console.WriteLine("\n========================\n");
             foreach (Employee employee in orderedEmployee)
             {
@@ -62,6 +80,22 @@ namespace LINQExample
                 Console.WriteLine("Lives : " + employee.City);
                 Console.WriteLine("Salary : " + employee.Salary);
             }
+
+
+            // LINQ group property
+            double minSalary = employees.Min(emp => emp.Salary);
+            double maxSalary = employees.Max(emp => emp.Salary);
+            double sumSalary = employees.Sum(emp => emp.Salary);
+            double avgSalary = employees.Average(emp => emp.Salary);
+            int countSalary = employees.Count();
+
+
+            Console.WriteLine("\n\nData Full Statistical Details:");
+            Console.WriteLine("Minimum Salary: " + minSalary);
+            Console.WriteLine("Maximum Salary: " + maxSalary);
+            Console.WriteLine("Sum of all Salary : " + sumSalary);
+            Console.WriteLine("Average Salary : " + avgSalary);
+            Console.WriteLine("Toral Salary count: " + countSalary);
 
             Console.ReadKey();
         }
