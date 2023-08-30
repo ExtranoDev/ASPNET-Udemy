@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using ModelValidationsExample.CustomValidators;
 using System.ComponentModel.DataAnnotations;
 
 namespace ModelValidationsExample.Models
@@ -11,6 +12,7 @@ namespace ModelValidationsExample.Models
             ErrorMessage = "{0} should be between {2} and {1} characters long")]
         [RegularExpression("^[A-Za-z .]$", ErrorMessage = "{0} should contain only alphabets, space and dot")]
         public string? PersonName { get; set; }
+
         [Required(ErrorMessage = "Email cannot be blank")]
         public string? Email { get; set; }
         
@@ -25,6 +27,9 @@ namespace ModelValidationsExample.Models
         public string? ConfirmPassword { get; set; }
         [Range(0, 99999.99, ErrorMessage = "{0} should be between {1} and {2}")]
         public double? Price { get; set; }
+        //[MinimumYearValidator(2005, ErrorMessage ="Custom Error {0}")]
+        [MinimumYearValidator(2005)]
+        public DateTime? DateOfBirth { get; set; }
         public override string ToString()
         {
             return $"Person Object ----\nPerson name: " +
