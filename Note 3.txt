@@ -107,5 +107,4 @@ On the hardware side, a web server is a computer with more processing power and 
 On the software side, a web server is a program that accepts HTTP requests from the clients, such as a web browser, processes the request, and returns a response. The response can be static, i.e. image/text, or dynamic, i.e. calculated total of the shopping cart.
 
 
-
 Popular examples of web servers include Apache, Nginx, and IIS.

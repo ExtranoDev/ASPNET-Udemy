@@ -36,6 +36,7 @@ It cannot be a static method.
 
 An action method executes an action in response to an HTTP request.
 
+
 Explain different types of Action Results in asp.net core?
 
 Controller is a class that is used to group-up a set of action methods.
