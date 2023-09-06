@@ -9,7 +9,8 @@ namespace ModelValidationsExample.Controllers
         [Route("register")]
         //[Bind(nameof(Person.PersonName), nameof(Person.Email),
         //nameof(Person.Password), nameof(Person.ConfirmPassword))]
-        public IActionResult Index([ModelBinder(BinderType = typeof(PersonModelBinder))] [FromBody] Person person)
+        //[ModelBinder(BinderType = typeof(PersonModelBinder))] [FromBody] 
+        public IActionResult Index(Person person)
         {
             if (!ModelState.IsValid)
             {
