@@ -30,7 +30,7 @@ namespace ModelValidationsExample.Models
         public double? Price { get; set; }
         //[MinimumYearValidator(2005, ErrorMessage ="Custom Error {0}")]
         [MinimumYearValidator(2005)]
-        [BindNever]
+        //[BindNever]
         public DateTime? DateOfBirth { get; set; }
         public DateTime? FromDate { get; set; }
         [DateRangeValidator("FromDate",
