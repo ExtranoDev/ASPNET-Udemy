@@ -203,6 +203,9 @@ namespace CSharpExtrasConsole
             Console.WriteLine("Department ID: " + employee3.dept.DepartmentID);
             Console.WriteLine("Department Name: " + employee3.dept.DepartmentName);
 
+
+            Console.WriteLine(ProductExtensions.timeConversion("06:40:03AM"));
+
             Console.ReadKey();
         }
     }
