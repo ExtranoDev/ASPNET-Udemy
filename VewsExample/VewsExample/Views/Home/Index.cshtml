@@ -1,0 +1,29 @@
+﻿@using VewsExample.Models
+@{
+    string appTitle = "Asp.Net Core Demo App";
+    Person person = new Person()
+    {
+        Name = "Josh",
+        DateOfBirth = Convert.ToDateTime("2000-07-01")
+    };
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Asp.Net Core App</title>
+    </head>
+    <body>
+        <h1>Welcome</h1>
+        <h2>Hello @person.Name</h2>
+        @if (person.DateOfBirth.HasValue) {
+            double age = Math.Round((DateTime.Now - person.DateOfBirth).Value.TotalDays / 365.25);
+            <h3>@age years old</h3>
+        } else {
+            <h3>Date of Birth is unknown</h3>
+        }
+    </body>
+</html>
