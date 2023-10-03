@@ -1,11 +1,16 @@
 ﻿@using VewsExample.Models
+@model IEnumerable<Person> 
 @{
-    string appTitle = "Asp.Net Core Demo App";
-    Person person = new Person()
-    {
-        Name = "Josh",
-        DateOfBirth = Convert.ToDateTime("2000-07-01")
-    };
+    // method
+    double? GetAge(DateTime? dateOfBirth) {
+        if (dateOfBirth is not null)
+        {
+            return Math.Round((DateTime.Now - dateOfBirth.Value).TotalDays / 365.25);
+        } else
+        {
+            return null;
+        }
+    }
 }
 
 
@@ -14,16 +19,33 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Asp.Net Core App</title>
+        <title>@ViewData["appTitle"]</title>
+        <link href="~/StyleSheet.css" rel="stylesheet"/>
     </head>
     <body>
-        <h1>Welcome</h1>
-        <h2>Hello @person.Name</h2>
-        @if (person.DateOfBirth.HasValue) {
-            double age = Math.Round((DateTime.Now - person.DateOfBirth).Value.TotalDays / 365.25);
-            <h3>@age years old</h3>
-        } else {
-            <h3>Date of Birth is unknown</h3>
-        }
+        <div class="page-content">
+            <h2>Hello</h2>
+
+            <h1>Welcome to this Room</h1>
+            @foreach(Person person in Model)
+            {
+                @* <text>Hello to</text> // literal text
+                @:Hello to @*literal text*@
+             
+                <div class="box float-left w-50">
+                    <h3>@person.Name</h3>
+                    <table class="table w-100">
+                        <tr>
+                            <td>Gender</td>
+                            <td>@person.PersonGender</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth</td>
+                            <td>@person.DateOfBirth?.ToString("MM/dd/yyyy")</td>
+                        </tr>
+                    </table>
+                </div>
+            }
+        </div>
     </body>
 </html>

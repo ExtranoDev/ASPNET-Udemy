@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolHRAdministration", "SchoolHRAdministration\SchoolHRAdministration.csproj", "{199CCCEF-8C9F-4E02-89B9-CA8DE9327211}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRAdministrationAPI", "HRAdministrationAPI\HRAdministrationAPI.csproj", "{B335B4AB-2B2E-4628-8FA5-2CE61729C4BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{199CCCEF-8C9F-4E02-89B9-CA8DE9327211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{199CCCEF-8C9F-4E02-89B9-CA8DE9327211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{199CCCEF-8C9F-4E02-89B9-CA8DE9327211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{199CCCEF-8C9F-4E02-89B9-CA8DE9327211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B335B4AB-2B2E-4628-8FA5-2CE61729C4BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B335B4AB-2B2E-4628-8FA5-2CE61729C4BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B335B4AB-2B2E-4628-8FA5-2CE61729C4BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B335B4AB-2B2E-4628-8FA5-2CE61729C4BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8FB907BA-5349-463E-9472-9EA9406B7B10}
+	EndGlobalSection
+EndGlobal
