@@ -1,0 +1,30 @@
+﻿@model Person
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["appTitle"]</title>
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="page-content">
+        <h1>Person Details</h1>
+        <div class="box float-left w-50">
+            <h3>@Model.Name</h3>
+            <table class="table w-100">
+                <tr>
+                    <td>Gender</td>
+                    <td>@Model.PersonGender</td>
+                </tr>
+                <tr>
+                    <td>Date of Birth</td>
+                    <td>@Model.DateOfBirth?.ToString("MM/dd/yyyy")</td>
+                </tr>
+            </table>
+            <a href="/">Back</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,5 +1,4 @@
-﻿@using VewsExample.Models
-@model IEnumerable<Person> 
+﻿@model IEnumerable<Person> 
 @{
     // method
     double? GetAge(DateTime? dateOfBirth) {
@@ -23,10 +22,9 @@
         <link href="~/StyleSheet.css" rel="stylesheet"/>
     </head>
     <body>
-        <div class="page-content">
-            <h2>Hello</h2>
+        <div class="page-content">         
+            <h1>Persons</h1>
 
-            <h1>Welcome to this Room</h1>
             @foreach(Person person in Model)
             {
                 @* <text>Hello to</text> // literal text
@@ -44,8 +42,15 @@
                             <td>@person.DateOfBirth?.ToString("MM/dd/yyyy")</td>
                         </tr>
                     </table>
+                    <div>
+                        <a href="/person-details/@person.Name">Person's name</a>
+                    </div>                    
                 </div>
             }
+
+            <div>
+                <a href="/person-with-product">Person with Product</a>
+            </div>
         </div>
     </body>
 </html>
