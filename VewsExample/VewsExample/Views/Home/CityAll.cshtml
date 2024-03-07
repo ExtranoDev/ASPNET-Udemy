@@ -2,6 +2,9 @@
 
 @{
     //local function: get css class based on ranges of fahrenheit value as instructed in the requirement
+
+    Layout = "~/Views/Shared/_WeatherLayout.cshtml";
+    ViewBag.Title = "Weather Report";
     string GetCssClassByFahrenheit(int TemperatureFahrenheit)
     {
         return TemperatureFahrenheit switch
@@ -13,47 +16,36 @@
     }
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Weather</title>
-    <link href="~/StyleSheet1.css" rel="stylesheet" />
-</head>
-<body>
-    <div class="container">
-        <div class="page-content">
-            <div class="margin-bottom">
-                <h1>Weather</h1>
-            </div>
-
-            <div class="margin-top-200 margin-left">
-                <div class="flex">
-                    @foreach (CityWeather city in Model)
-                    {
-                        <div class="box cursor-pointer w-30 @GetCssClassByFahrenheit(city.TemperatureFahrenheit)">
-                            <div class="flex-borderless">
-                                <div class="w-50">
-                                    <h2>@city.CityName</h2>
-                                    <h4 class="text-dark-grey">@city.DateAndTime.ToString("hh:mm tt")</h4>
-                                    <a href="~/weather/@city.CityUniqueCode" class="margin-top">Details</a>
-                                </div>
-                                <div class="w-50 border-left">
-                                    <h1 class="margin-left">@city.TemperatureFahrenheit <sup class="text-grey">&#8457</sup></h1>
-                                </div>
-                            </div>
-
-                        </div>
-                    }
-
-                </div>
-            </div>
+<div class="container">
+    <div class="page-content">
+        <div class="margin-bottom">
+            <h1>Weather</h1>
         </div>
 
-    </div>
-</body>
-</html>
+        <div class="margin-top-200 margin-left">
+            <div class="flex">
+                @foreach (CityWeather city in Model)
+                {
+                    <div class="box cursor-pointer w-30 @GetCssClassByFahrenheit(city.TemperatureFahrenheit)">
+                        <div class="flex-borderless">
+                            <div class="w-50">
+                                <h2>@city.CityName</h2>
+                                <h4 class="text-dark-grey">@city.DateAndTime.ToString("hh:mm tt")</h4>
+                                <a href="~/weather/@city.CityUniqueCode" class="margin-top">Details</a>
+                            </div>
+                            <div class="w-50 border-left">
+                                <h1 class="margin-left">@city.TemperatureFahrenheit <sup class="text-grey">&#8457</sup></h1>
+                            </div>
+                        </div>
 
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
 

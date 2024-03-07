@@ -1,6 +1,8 @@
 ﻿@model CityWeather
 @{
     //local function: get css class based on ranges of fahrenheit value as instructed in the requirement
+    Layout = "~/Views/Shared/_WeatherLayout.cshtml";
+    ViewBag.Title = Model.CityName;
     string GetCssClassByFahrenheit(int TemperatureFahrenheit)
     {
         return TemperatureFahrenheit switch
@@ -11,15 +13,7 @@
         };
     }
 }
-<!DOCTYPE html>
 
-<html>
-<head>
- <meta name="viewport" content="width=device-width" />
- <title>@Model.CityName City Weather</title>
- <link href="~/StyleSheet1.css" rel="stylesheet" />
-</head>
-<body>
  <div class="container">
   <div class="page-content">
    <div class="margin-bottom">
@@ -42,7 +36,7 @@
     </div>
 
     <div class="text-center">
-     <a href="~/">Back to Weather Home Page</a>
+     <a href="~/weather">Back to Weather Home Page</a>
     </div>
    }
    else
@@ -53,5 +47,3 @@
   </div>
 
  </div>
-</body>
-</html>
