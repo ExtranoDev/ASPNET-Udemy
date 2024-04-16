@@ -1,6 +1,20 @@
 ﻿@{
-    ViewData["Title"] = "Home";
+    ViewBag.Title = "Home";
 }
 
 <h1>Home</h1>
 <p>Welcome to Home Page</p>
+
+<button class="button button-blue-back" id="button-load">Load Programming Languages</button>
+<div class="box programming-languages-content">
+
+</div>
+@await Component.InvokeAsync("Grid")
+
+<script>
+    document.querySelector("#button-load").addEventListener("click", async function () {
+        let resp = await fetch("programming-languages");
+        let languages = await resp.text();
+        document.querySelector(".programming-languages-content").innerHTML = languages;
+    });
+</script>

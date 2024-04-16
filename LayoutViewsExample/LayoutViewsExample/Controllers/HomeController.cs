@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LayoutViewsExample.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LayoutViewsExample.Controllers
 {
@@ -20,6 +21,22 @@ namespace LayoutViewsExample.Controllers
         public IActionResult Contact()
         {
             return View();
+        }
+        [Route("programming-languages")]
+        public IActionResult ProgrammingLanguages()
+        {
+            ListModel model = new()
+            {
+                ListTitle = "Programming Languages List",
+                ListItems =
+                [
+                    "Python",
+                    "C#",
+                    "Go"
+                ]
+            };
+
+            return PartialView("_ListPartialView", model);
         }
     }
 }
