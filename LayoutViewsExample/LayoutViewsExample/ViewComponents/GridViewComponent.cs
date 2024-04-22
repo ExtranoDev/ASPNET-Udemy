@@ -7,10 +7,10 @@ namespace LayoutViewsExample.ViewComponents
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            PersonGridModel model = new PersonGridModel() { 
+            PersonGridModel model = new() { 
                 GridTitle = "Persons List",
-                Persons = new List<Person>()
-                {
+                Persons =
+                [
                     new Person()
                     {
                         PersonName = "John",
@@ -26,10 +26,10 @@ namespace LayoutViewsExample.ViewComponents
                         PersonName = "Andrew",
                         JobTitle = "Front-end Developer",
                     }
-                }
+                ]
             };
             ViewData["Grid"] = model;
-            return View(); // invoked a partial view Viewa/Shared/Components/Grid/Default.cshtml
+            return View("Default", model);
         }
     }
 }
