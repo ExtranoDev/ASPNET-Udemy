@@ -1,5 +1,15 @@
 ﻿@{
     ViewData["Title"] = "About";
+
+    PersonGridModel personGridModel = new PersonGridModel()
+        {
+            GridTitle = "Friends",
+            Persons = new List<Person>(){
+            new Person() {PersonName = "Mia", JobTitle = "Developer"},
+            new Person() {PersonName = "Emma", JobTitle = "UI Designer"},
+            new Person() {PersonName = "Avva", JobTitle = "QA"}
+        }
+    };
 }
 
 <h1>About</h1>
@@ -12,5 +22,5 @@
     Sed quam augue, ultrices in porttitor ac, porta ut sem. Duis accumsan gravida mauris, nec aliquam leo.
 </p>
 
-<vc:grid></vc:grid>
+<vc:grid grid="personGridModel"></vc:grid>
 

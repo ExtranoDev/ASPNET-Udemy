@@ -9,8 +9,10 @@
 <div class="box programming-languages-content">
 
 </div>
-@await Component.InvokeAsync("Grid")
+<button class="button button-blue-back" id="load-friends-button">Load Friends</button>
+<div id="list"></div>
 
+<script src="~/friends.js"></script>
 <script>
     document.querySelector("#button-load").addEventListener("click", async function () {
         let resp = await fetch("programming-languages");
