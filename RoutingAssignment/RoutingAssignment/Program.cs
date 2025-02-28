@@ -8,7 +8,19 @@ countryList.Add(3, "United Kingdom");
 countryList.Add(4, "India");
 countryList.Add(5, "Japan");
 
+app.Use(async (context, next) =>
+{
+    Endpoint endpoint = context.GetEndpoint();
+    await next(context);
+});
+
 app.UseRouting();
+
+app.Use(async (context, next) =>
+{
+    Endpoint endpoint = context.GetEndpoint();
+    await next(context);
+});
 
 app.UseEndpoints(endpoints => {
     endpoints.MapGet("countries", async context =>
@@ -19,7 +31,7 @@ app.UseEndpoints(endpoints => {
         }
     });
 
-    endpoints.MapGet("/countries/{countryID:int:range(1,100)}", async (context) =>
+    endpoints.MapGet("/countries/{countryID:int:(1,100)}", async (context) =>
     {
         var routeValues = context.Request.RouteValues;
         int countryID = Convert.ToInt32(routeValues["countryID"]);
