@@ -1,17 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WeatherAppProject.Models;
+using Models;
 
 namespace WeatherAppProject.ViewComponents
 {
     public class CityViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(CityWeatherModel city)
+        public async Task<IViewComponentResult> InvokeAsync(CityWeather city)
+
         {
             ViewBag.CityCssClass = GetStyleByFahrenheit(city.TemperatureFahrenheit);
             return View(city);
         }
 
-        private dynamic GetStyleByFahrenheit(int temperatureFahrenheit)
+        private string GetStyleByFahrenheit(int temperatureFahrenheit)
         {
             return temperatureFahrenheit switch
             {

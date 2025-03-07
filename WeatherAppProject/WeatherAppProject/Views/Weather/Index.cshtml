@@ -1,11 +1,11 @@
-﻿@model IEnumerable<CityWeatherModel>
+﻿@model IEnumerable<CityWeather>
 @{
     ViewBag.Title = "All Weather";
 }
 
 <div class="margin-top-200 margin-left">
     <div class="flex">
-        @foreach (CityWeatherModel city in Model)
+        @foreach (CityWeather city in Model)
         {
             @* <partial name="_CityPartial" model="city" /> *@
             @await Component.InvokeAsync("City", new {city = city})
