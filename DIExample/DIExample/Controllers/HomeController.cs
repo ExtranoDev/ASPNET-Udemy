@@ -11,18 +11,21 @@ namespace DIExample.Controllers
         private readonly ICitiesService _citiesService2;
         private readonly ICitiesService _citiesService3;
         private readonly ILifetimeScope _lifeTimeScope;
+        private IWebHostEnvironment _webHostEnvironment;
 
         //constructor
         public HomeController(
             ICitiesService citiesService1,
             ICitiesService citiesService2,
             ICitiesService citiesService3,
-            ILifetimeScope serviceScopeFactory)
+            ILifetimeScope serviceScopeFactory,
+            IWebHostEnvironment webHostEnvironment)
         {
             _citiesService1 = citiesService1;
             _citiesService2 = citiesService2;
             _citiesService3 = citiesService3;
             _lifeTimeScope = serviceScopeFactory;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [Route("/")]
