@@ -1,0 +1,68 @@
+﻿@model StockTrade
+
+<h1 class="navbar-brand">Stock Media Links</h1>
+
+
+<div class="flex">
+    <div class="box">
+        <a href="@ViewBag.facebook" target="_blank">Facebook</a>
+    </div>
+    <div class="box">
+        <a href="@ViewBag.twitter" target="_blank">Twitter</a>
+    </div>
+    <environment exclude="Development">
+        <div class="box">
+            <a href="@ViewBag.instagram">Instagram</a>
+        </div>
+    </environment>
+    <div class="box">
+        <a href="@ViewBag.youtube" target="_blank">Youtube</a>
+    </div>
+</div>
+
+<div class="container">
+    <p>@Model.StockName <span>(@Model.StockSymbol)</span></p>
+    <h3>@Model.Price</h3>
+    <small>Volume: @Model.Quantity</small>
+</div>
+
+<div class="container">
+    <h4>Updated Stock Price</h4>
+    <p>@Model.StockName <span id="symbol">(@Model.StockSymbol)</span></p>
+    <h3 id="stock-price">@Model.Price</h3>
+    Volume: <small id="volume">@Model.Quantity</small>
+</div>
+
+<script>
+    const token = "cc676uaad3i9rj8tb1s0"; // Replace with your Finnhub API token
+    const socket = new WebSocket(`wss://ws.finnhub.io?token=${token}`);
+    const stockSymbol = "MSFT"; // Change to your desired stock symbol
+
+    // Open WebSocket connection
+    socket.addEventListener("open", () => {
+        console.log("Connected to Finnhub WebSocket");
+        socket.send(JSON.stringify({ type: "subscribe", symbol: stockSymbol }));
+    });
+
+    // Listen for messages from the WebSocket
+    socket.addEventListener("message", (event) => {
+        const data = JSON.parse(event.data);
+        if (data.type === "trade") {
+            const latestPrice = data.data[0].p; // Extract latest price
+            const volume = data.data[0].v; // Extract latest volume
+            document.getElementById("stock-price").textContent = latestPrice.toFixed(2);
+            document.getElementById("volume").textContent = volume.toFixed(2);
+        }
+    });
+
+    // Handle errors
+    socket.addEventListener("error", (error) => {
+        console.error("WebSocket error:", error);
+    });
+
+    // Handle WebSocket closure
+    socket.addEventListener("close", () => {
+        console.log("WebSocket closed. Reconnecting...");
+        setTimeout(() => location.reload(), 5000); // Auto-reconnect after 5 seconds
+    });
+</script>
