@@ -38,7 +38,7 @@ namespace CRUDTests
             PersonAddRequest? personAddRequest = new() { PersonName = null };
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => { _personService.AddPerson(personAddRequest); });
+            Assert.Throws<ArgumentException>(() => { _personService.AddPerson(personAddRequest); });
         }
 
         // When proper value is supplied as PersonName,
