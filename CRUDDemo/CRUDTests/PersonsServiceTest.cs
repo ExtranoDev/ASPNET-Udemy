@@ -9,11 +9,13 @@ namespace CRUDTests
     {
         // private fields
         private readonly IPersonsService _personService;
+        private readonly ICountriesService _countryService;
 
         // contructor
         public PersonsServiceTest()
         {
             _personService = new PersonsService();
+            _countryService = new CountriesService();
         }
 
         #region AddPerson
@@ -60,6 +62,47 @@ namespace CRUDTests
             // Assert
             Assert.True(person_response_from_add.PersonID != Guid.Empty);
             Assert.Contains(person_response_from_add, persons_list);
+        }
+        #endregion
+
+        #region GetPersonByPersonID
+        // If we supply null as PersonID, it should return null as
+        // PersonResponse
+        [Fact]
+        public void GetPersonByPersonID_NullPersonID()
+        {
+            // Arrange
+            Guid? personID = null;
+
+            // Act
+            PersonResponse person_response_from_get = _personService.GetPersonByPersonID(personID);
+
+            // Assert
+            Assert.Null(person_response_from_get);
+        }
+
+        // If we supply a valid PersonID, it should return
+        // the valid person detaila as PersonResponse object
+        [Fact]
+        public void GetPersonByPersonID_WithPersonID()
+        {
+            // Arrange
+            CountryAddRequest countryAddRequest = new() { CountryName = "Canada" };
+            CountryResponse countryResponse = _countryService.AddCountry(countryAddRequest);
+
+            // Act
+            PersonAddRequest person_response_from_get = new PersonAddRequest() {
+                PersonName = "Joshua",
+                Email = "email@sample.com",
+                Address = "address",
+            CountryID = countryResponse.CountryID, DateOfBirth = DateTime.Parse("2001-01-01"),
+            Gender = GenderOptions.Male, RecieveNewsLetters = false
+            };
+            PersonResponse personResponse_fromAdd = _personService.AddPerson(person_response_from_get);
+            PersonResponse personResponse_fromGet = _personService.GetPersonByPersonID(personResponse_fromAdd.PersonID);
+
+            // Assert
+            Assert.Equal(personResponse_fromAdd, personResponse_fromGet);
         }
         #endregion
     }

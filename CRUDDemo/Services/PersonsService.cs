@@ -15,7 +15,7 @@ namespace Services
         // constructor
         public PersonsService()
         {
-            _persons = new List<Person>();
+            _persons = [];
             _countriesService = new CountriesService();
         }
 
@@ -32,10 +32,7 @@ namespace Services
         public PersonResponse AddPerson(PersonAddRequest? personAddRequest)
         {
             // check if PersonAddRequest is not null
-            if (personAddRequest == null)
-            {
-                throw new ArgumentNullException(nameof(personAddRequest));
-            }
+            ArgumentNullException.ThrowIfNull(personAddRequest);
 
             // Model Validation
             ValidationHelper.ModelValidation(personAddRequest);
@@ -54,6 +51,11 @@ namespace Services
         }
 
         public List<PersonResponse> GetAllPersons()
+        {
+            throw new NotImplementedException();
+        }
+
+        public PersonResponse GetPersonByPersonID(Guid? personID)
         {
             throw new NotImplementedException();
         }
