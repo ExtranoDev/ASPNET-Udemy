@@ -15,12 +15,125 @@ namespace Services
 
 
         // constructor
-        public PersonsService()
+        public PersonsService(bool initialize = true)
         {
             _persons = [];
             _countriesService = new CountriesService();
-        }
+            if (initialize)
+            {
+                _persons.Add(new Person
+                {
+                    PersonID = Guid.Parse("1a9eb2be-f04d-498c-b40e-936b8fcacdd4"),
+                    PersonName = "Shelbi",
+                    Email = "siverson0@arstechnica.com",
+                    DateOfBirth = DateTime.Parse("1949-04-21"),
+                    Gender = "Agender",
+                    Address = "4 Pond Center",
+                    RecieveNewsLetters = false
+                });
 
+                _persons.Add(new Person
+                {
+                    PersonID = Guid.Parse("133e64aa-7b0d-445e-ac59-a075f545c950"),
+                    PersonName = "Dietrich",
+                    Email = "dzebedee1@ed.gov",
+                    DateOfBirth = DateTime.Parse("2008-04-21"),
+                    Gender = "Bigender",
+                    Address = "055 Talisman Point",
+                    RecieveNewsLetters = true
+                });
+
+                _persons.Add(new Person
+                {
+                    PersonID = Guid.Parse("a38e6237-ef95-40f9-a853-f1299efa2cbb"),
+                    PersonName = "Christabel",
+                    Email = "cdunrige2@archive.org",
+                    DateOfBirth = DateTime.Parse("1931-09-11"),
+                    Gender = "Female",
+                    Address = "2620 Elgar Parkway",
+                    RecieveNewsLetters = false
+                });
+
+                _persons.Add(new Person
+                {
+                    PersonID = Guid.Parse("76f16611-bb89-4c50-bc6f-0e87c7c9c9c6"),
+                    PersonName = "Cort",
+                    Email = "ckernes3@cam.ac.uk",
+                    DateOfBirth = DateTime.Parse("1992-09-10"),
+                    Gender = "Male",
+                    Address = "0 Cottonwood Place",
+                    RecieveNewsLetters = true
+                });
+
+                _persons.Add(new Person
+                {
+                    PersonID = Guid.Parse("8fdd310a-7a25-4476-8460-968e5bd98153"),
+                    PersonName = "Alica",
+                    Email = "awicklin5@economist.com",
+                    DateOfBirth = DateTime.Parse("1948-11-16"),
+                    Gender = "Female",
+                    Address = "3242 Bunting Lane",
+                    RecieveNewsLetters = true
+                });
+
+                _persons.Add(new Person
+                {
+                    PersonID = Guid.Parse("1ec0424d-a101-43e5-b24c-f09604fea8c0"),
+                    PersonName = "Mort",
+                    Email = "mrase4@twitter.com",
+                    DateOfBirth = DateTime.Parse("2019-02-27"),
+                    Gender = "Male",
+                    Address = "963 Montana Trail",
+                    RecieveNewsLetters = false
+                });
+
+                _persons.Add(new Person
+                {
+                    PersonID = Guid.Parse("a5e57972-352e-4224-94f2-67a79c479b16"),
+                    PersonName = "Faythe",
+                    Email = "fteale6@parallels.com",
+                    DateOfBirth = DateTime.Parse("1975-09-13"),
+                    Gender = "Female",
+                    Address = "9 Granby Way",
+                    RecieveNewsLetters = true
+                });
+
+                _persons.Add(new Person
+                {
+                    PersonID = Guid.Parse("fece8b57-c64c-4c6b-a2ab-7957abeb0ad7"),
+                    PersonName = "Arlen",
+                    Email = "adarrach7@tripadvisor.com",
+                    DateOfBirth = DateTime.Parse("1984-01-11"),
+                    Gender = "Female",
+                    Address = "870 Helena Crossing",
+                    RecieveNewsLetters = false
+                });
+
+                _persons.Add(new Person
+                {
+                    PersonID = Guid.Parse("67741346-e5d7-4a29-8088-1da30cc32409"),
+                    PersonName = "Blondelle",
+                    Email = "bpindred8@xrea.com",
+                    DateOfBirth = DateTime.Parse("1992-10-31"),
+                    Gender = "Female",
+                    Address = "36 Hanover Drive",
+                    RecieveNewsLetters = true
+                });
+
+                _persons.Add(new Person
+                {
+                    PersonID = Guid.Parse("d633be55-78ae-42e7-9f96-5a798014902e"),
+                    PersonName = "Natty",
+                    Email = "nbrotherhed9@pen.io",
+                    DateOfBirth = DateTime.Parse("1991-01-12"),
+                    Gender = "Female",
+                    Address = "63 Buell Circle",
+                    RecieveNewsLetters = true
+                });
+            }
+        
+            
+        }
         private PersonResponse ConvertPersonToPersonResponse(Person person)
         {
             // convert person object into PersonResponse type
