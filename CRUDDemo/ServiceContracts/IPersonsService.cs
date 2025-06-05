@@ -31,7 +31,7 @@ namespace ServiceContracts
         /// </summary>
         /// <param name="personID"></param>
         /// <returns>Returns mateching Person object</returns>
-        PersonResponse GetPersonByPersonID(Guid? personID);
+        PersonResponse? GetPersonByPersonID(Guid? personID);
 
         /// <summary>
         /// Returns all person objects that matches with the given searhc field and search string

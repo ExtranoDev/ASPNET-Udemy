@@ -191,18 +191,18 @@ namespace Services
 
             matchingPersons = searchBy switch
             {
-                nameof(Person.PersonName) => [.. allPersons.Where(temp => string.IsNullOrEmpty(temp.PersonName)
+                nameof(PersonResponse.PersonName) => [.. allPersons.Where(temp => string.IsNullOrEmpty(temp.PersonName)
                     || temp.PersonName.Contains(searchString, StringComparison.OrdinalIgnoreCase))],
-                nameof(Person.Email) => [.. allPersons.Where(temp => string.IsNullOrEmpty(temp.Email)
+                nameof(PersonResponse.Email) => [.. allPersons.Where(temp => string.IsNullOrEmpty(temp.Email)
                     || temp.Email.Contains(searchString, StringComparison.OrdinalIgnoreCase))],
-                nameof(Person.DateOfBirth) => [.. allPersons
+                nameof(PersonResponse.DateOfBirth) => [.. allPersons
                         .Where(temp => temp.DateOfBirth == null || temp.DateOfBirth.Value.ToString("dd MMM yyyy")
                         .Contains(searchString, StringComparison.OrdinalIgnoreCase))],
-                nameof(Person.Gender) => [.. allPersons.Where(temp => string.IsNullOrEmpty(temp.Gender)
-                    || temp.Gender.Contains(searchString, StringComparison.OrdinalIgnoreCase))],
-                nameof(Person.CountryID) => [.. allPersons.Where(temp => string.IsNullOrEmpty(temp.Country)
+                nameof(PersonResponse.Gender) => [.. allPersons.Where(temp => string.IsNullOrEmpty(temp.Gender)
+                    || temp.Gender.Equals(searchString, StringComparison.OrdinalIgnoreCase))],
+                nameof(PersonResponse.CountryID) => [.. allPersons.Where(temp => string.IsNullOrEmpty(temp.Country)
                     || temp.Country.Contains(searchString, StringComparison.OrdinalIgnoreCase))],
-                nameof(Person.Address) => [.. allPersons.Where(temp => string.IsNullOrEmpty(temp.Address)
+                nameof(PersonResponse.Address) => [.. allPersons.Where(temp => string.IsNullOrEmpty(temp.Address)
                     || temp.Address.Contains(searchString, StringComparison.OrdinalIgnoreCase))],
                 _ => allPersons,
             };
