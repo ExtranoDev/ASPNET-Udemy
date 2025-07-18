@@ -13,7 +13,6 @@ namespace Services
         private readonly List<Person> _persons;
         private readonly ICountriesService _countriesService;
 
-
         // constructor
         public PersonsService(bool initialize = true)
         {
@@ -168,7 +167,7 @@ namespace Services
 
         public List<PersonResponse> GetAllPersons()
         {
-            return [.. _persons.Select(temp => temp.ToPersonResponse())];
+            return [.. _persons.Select(temp => ConvertPersonToPersonResponse(temp))];
         }
 
         public PersonResponse? GetPersonByPersonID(Guid? personID)
@@ -178,7 +177,7 @@ namespace Services
             Person? person = _persons.FirstOrDefault(temp => temp.PersonID == personID);
             if (person == null) return null;
 
-            return person.ToPersonResponse();
+            return ConvertPersonToPersonResponse(person);
         }
 
         public List<PersonResponse> GetFilteredPersons(string searchBy, string? searchString)
@@ -294,7 +293,7 @@ namespace Services
             matchingPerson.DateOfBirth = personUpdateRequest.DateOfBirth;
             matchingPerson.RecieveNewsLetters = personUpdateRequest.RecieveNewsLetters;
 
-            return matchingPerson.ToPersonResponse();
+            return ConvertPersonToPersonResponse(matchingPerson);
         }
 
         public bool DeletePerson(Guid? personID)
